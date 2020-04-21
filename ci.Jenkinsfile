@@ -8,7 +8,6 @@ pipeline{
 //   }
   options {
     timestamps()
-    ansiColor('xterm')
     buildDiscarder(logRotator(numToKeepStr: '10'))
     disableConcurrentBuilds()
     disableResume()
@@ -29,7 +28,7 @@ pipeline{
 
     choice(
       name: 'TARGET_ENVIRONMENT',
-      choices: ['development','pre-production', 'production'],
+      choices: ['development', 'production'],
       description: 'Environment to deploy'
     )
   }
@@ -45,7 +44,7 @@ pipeline{
                     extensions: [],
                     gitTool: 'Default',
                     submoduleCfg: [],
-                    userRemoteConfigs: [[credentialsId: 'github', url: 'https://github-risk.int.thomsonreuters.com/Typhoon/sre-terraform-pipeline']]
+                    userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/Navapon/nodejs-devops.git']]
           ])
         }
       }
@@ -62,14 +61,14 @@ pipeline{
 
     stage('Testing') {
       steps {
-          echo "Running test"
+          echo "Maybe install jest and using npm run test on this step"
       }
     }
 
     stage('Building Docker Image') {
       steps {
         script {
-          dockerImage = docker.build(containerName + '${TARGET_ENVIRONMENT}-${BUILD_NUMBER}','./app/${PROJECT_NAME}')
+          dockerImage = docker.build("${params.PROJECT_NAME}:${params.TARGET_ENVIRONMENT}-${BUILD_NUMBER}","./app/${params.PROJECT_NAME}")
         }
       }
     }

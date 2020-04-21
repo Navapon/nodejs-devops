@@ -9,34 +9,37 @@ services:
       - ./nginx/conf:/etc/nginx/conf.d/
       - ./nginx/log:/var/log/nginx
     networks: 
-      - frontend
+      - dev-frontend
   hello1:
     build: ./app/hello1 
     ports: 
       - "8000"
     environment: 
+      - NODE_ENV=development
       - HOST=redis
       - PORT=6379
     networks: 
-      - frontend
-      - backend
+      - dev-frontend
+      - dev-backend
   hello2:
     build: ./app/hello2
     ports: 
       - "8000"
+    environment: 
+      - NODE_ENV=development
     networks: 
-      - frontend
-      - backend
+      - dev-frontend
+      - dev-backend
   redis:
     image: redis
     container_name: redis
     ports: 
       - "6379"
     networks: 
-      - backend
+      - dev-backend
 
 networks:
-  frontend:
+  dev-frontend:
     driver: bridge
-  backend:
+  dev-backend:
     driver: bridge

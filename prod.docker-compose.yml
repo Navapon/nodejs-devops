@@ -1,0 +1,45 @@
+version: "3"
+services:
+  nginx:
+    image: nginx:1.17.10-alpine
+    container_name: nginx
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./nginx/conf:/etc/nginx/conf.d/
+      - ./nginx/log:/var/log/nginx
+    networks:
+      - frontend
+  hello1:
+    build: ./app/hello1
+    ports:
+      - "8000"
+    environment:
+      - NODE_ENV=production
+      - HOST=redis
+      - PORT=6379
+    networks:
+      - frontend
+      - backend
+  hello2:
+    build: ./app/hello2
+    ports:
+      - "8000"
+    environment:
+      - NODE_ENV=production
+    networks:
+      - frontend
+      - backend
+  redis:
+    image: redis
+    container_name: redis
+    ports:
+      - "6379"
+    networks:
+      - backend
+
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge

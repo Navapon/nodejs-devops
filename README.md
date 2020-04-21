@@ -19,3 +19,5 @@ node app/hello-1.js
 ## hello-2 ##
 
 node app/hello-2.js
+
+docker run -u root --rm -d -p 8080:8080 -v $PWD/jenkinsdata:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock jenkinsci/blueocean
