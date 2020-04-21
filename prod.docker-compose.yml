@@ -16,8 +16,6 @@ services:
       - "8000"
     environment:
       - NODE_ENV=production
-      - HOST=redis
-      - PORT=6379
     networks:
       - frontend
       - backend
