@@ -7,6 +7,7 @@ COPY package.json ./
 RUN npm install
 
 COPY main.js main.js
+COPY ./config ./config
 
 EXPOSE 8000
 
