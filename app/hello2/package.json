@@ -1,0 +1,14 @@
+{
+  "name": "hello2",
+  "version": "1.0.0",
+  "description": "hello2 app",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Navapon",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
