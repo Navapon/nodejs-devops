@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-api
+  labels:
+    name: hello-api
+    owner: Navapon
+    version: "1.0"
+    module: WebServer
+    environment: development
+spec:
+  selector:
+    name: hello-api
+    owner: Navapon
+    version: "1.0"
+    module: WebServer
+    environment: development
+  type: NodePort
+  ports:
+   - port: 8000
+     name: http
+     targetPort: 8000
+     protocol: TCP
+     nodePort: 9000
