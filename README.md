@@ -3,6 +3,7 @@
     i've do the following task
     - Create simple CI/CD for application with code pipeline
     - docker-compose provisioning infrastucture with seperate environment by using env & nodejs dotenv
+    - Simple kubernetes deployment and service
 
 # Pre-require
 
@@ -51,3 +52,8 @@ The API can access via Nginx make upstream forward to two container on each api
      http://localhost:8080/hello2
 
 The nginx log and config  located at nginx folder
+
+
+# K8s
+
+The Deployment and service file is located at kubernetes folder
